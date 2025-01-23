@@ -1,11 +1,10 @@
 package com.hotelapi.project.util;
 
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Util {
 
-    public static String createRoomNumber() {
-        int room = ThreadLocalRandom.current().nextInt(1, 21);
-        return String.format("%02d", room);
-    }
+//    public static String createRoomNumber() {
+//        int room = (int) (Math.random() * 100);
+//        return String.format("%02d", room);
+//    }
 }

@@ -23,8 +23,7 @@ public class ClientDTOmapper {
         clientResponse.setBirthDate(client.getBirthDate());
         clientResponse.setFirstName(client.getFirstName());
         clientResponse.setEmail(client.getEmail());
-        clientResponse.getRoomNumber(client.getRoomNumber());
+       // clientResponse.setRoomNumber(client.getRoomNumber());
         return clientResponse;
     }
-
 }

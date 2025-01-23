@@ -31,8 +31,8 @@ public class Client {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "roomNumber", nullable = false)
-    private String roomNumber;
+//    @Column(name = "roomNumber", nullable = false)
+//    private String roomNumber;
 
     @Column(name = "CPF", nullable = false, unique = true)
     private String cpf;
@@ -44,7 +44,7 @@ public class Client {
         this.dataHoraCriacao = LocalDateTime.now();
     }
 
-    public Client(String firstName, Long id, String lastName, String email, String phone, LocalDate birthDate, String address, String roomNumber, String cpf) {
+    public Client(String firstName, Long id, String lastName, String email, String phone, LocalDate birthDate, String address, String cpf) {
         this.firstName = firstName;
         this.id = id;
         this.lastName = lastName;
@@ -52,7 +52,7 @@ public class Client {
         this.phone = phone;
         this.birthDate = birthDate;
         this.address = address;
-        this.roomNumber = roomNumber;
+        //this.roomNumber = roomNumber;
         this.cpf = cpf;
     }
 
@@ -100,13 +100,13 @@ public class Client {
         this.address = address;
     }
 
-    public String getRoomNumber() {
-        return roomNumber;
-    }
+//    public String getRoomNumber() {
+//        return roomNumber;
+//    }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+//    public void setRoomNumber(String roomNumber) {
+//        this.roomNumber = roomNumber;
+//    }
 
     public String getCpf() {
         return cpf;

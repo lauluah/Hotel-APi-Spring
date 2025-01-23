@@ -1,10 +1,7 @@
 package com.hotelapi.project.dto.request;
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -19,7 +16,7 @@ public class ClientDTOrequest {
     @NotBlank(message = "The last name is required and cannot be blank.")
     private String lastName;
 
-    @Positive(message = "Age must be a positive number and greater than zero.")
+    @Past(message = "The birth date must be in the past.")
     private LocalDate birthDate;
 
     @NotBlank(message = "The email is required and cannot be blank.")
