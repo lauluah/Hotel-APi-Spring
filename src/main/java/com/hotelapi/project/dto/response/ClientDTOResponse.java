@@ -1,29 +1,32 @@
 package com.hotelapi.project.dto.response;
 
+import com.hotelapi.project.util.Util;
+
 import java.time.LocalDate;
 
 public class ClientDTOResponse {
-    private String firstName;
+    private String name;
     private LocalDate birthDate;
     private String email;
-   // private String roomNumber;
+    private String roomNumber;
 
-    public ClientDTOResponse(String firstName, LocalDate birthDate, String email) {
-        this.firstName = firstName;
+    public ClientDTOResponse(String name, LocalDate birthDate, String email, String roomNumber) {
+        this.name = name;
         this.birthDate = birthDate;
         this.email = email;
-   //     this.roomNumber = Util.createRoomNumber();
+        this.roomNumber = Util.createRoomNumber();
     }
 
     public ClientDTOResponse() {
+        this.roomNumber = Util.createRoomNumber();
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getBirthDate() {
@@ -41,12 +44,12 @@ public class ClientDTOResponse {
     public void setEmail(String email) {
         this.email = email;
     }
-//
-//    public String getRoomNumber() {
-//        return this.roomNumber;
-//    }
-//
-//    public void setRoomNumber(String roomNumber) {
-//        this.roomNumber = roomNumber;
-//    }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 }

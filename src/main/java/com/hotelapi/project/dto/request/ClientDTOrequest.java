@@ -10,7 +10,7 @@ public class ClientDTOrequest {
 
     @NotBlank(message = "The name is required and cannot be blank.")
     @Size(min = 3, max = 50, message = "The name must be between 3 and 50 characters.")
-    private String firstName;
+    private String name;
 
     @Column(name = "lastName", nullable = false)
     @NotBlank(message = "The last name is required and cannot be blank.")
@@ -33,8 +33,8 @@ public class ClientDTOrequest {
     @CPF(message = "The CPF format is invalid. Please enter a valid CPF.")
     private String cpf;
 
-    public ClientDTOrequest(String firstName, String lastName, LocalDate birthDate, String email, String phone, String address, String cpf) {
-        this.firstName = firstName;
+    public ClientDTOrequest(String name, String lastName, LocalDate birthDate, String email, String phone, String address, String cpf) {
+        this.name = name;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
@@ -43,12 +43,12 @@ public class ClientDTOrequest {
         this.cpf = cpf;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName() {

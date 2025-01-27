@@ -8,7 +8,7 @@ public class ClientDTOmapper {
 
     public static Client toEntity(ClientDTOrequest clientDTOrequest) {
         Client client = new Client();
-        client.setFirstName(clientDTOrequest.getFirstName());
+        client.setName(clientDTOrequest.getName());
         client.setLastName(clientDTOrequest.getLastName());
         client.setEmail(clientDTOrequest.getEmail());
         client.setPhone(clientDTOrequest.getPhone());
@@ -21,9 +21,9 @@ public class ClientDTOmapper {
     public static ClientDTOResponse toResponse(Client client) {
         ClientDTOResponse clientResponse = new ClientDTOResponse();
         clientResponse.setBirthDate(client.getBirthDate());
-        clientResponse.setFirstName(client.getFirstName());
+        clientResponse.setName(client.getName());
         clientResponse.setEmail(client.getEmail());
-       // clientResponse.setRoomNumber(client.getRoomNumber());
+        System.out.println(clientResponse.getRoomNumber());
         return clientResponse;
     }
 }

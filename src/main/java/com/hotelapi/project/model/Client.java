@@ -13,8 +13,8 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "firstName", nullable = false)
-    private String firstName;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "lastName", nullable = false)
     private String lastName;
@@ -31,8 +31,8 @@ public class Client {
     @Column(name = "address", nullable = false)
     private String address;
 
-//    @Column(name = "roomNumber", nullable = false)
-//    private String roomNumber;
+    @Column(name = "roomNumber")
+    private String roomNumber;
 
     @Column(name = "CPF", nullable = false, unique = true)
     private String cpf;
@@ -44,15 +44,15 @@ public class Client {
         this.dataHoraCriacao = LocalDateTime.now();
     }
 
-    public Client(String firstName, Long id, String lastName, String email, String phone, LocalDate birthDate, String address, String cpf) {
-        this.firstName = firstName;
+    public Client(String name, Long id, String lastName, String email, String phone, LocalDate birthDate, String address, String cpf) {
+        this.name = name;
         this.id = id;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.birthDate = birthDate;
         this.address = address;
-        //this.roomNumber = roomNumber;
+        this.roomNumber = roomNumber;
         this.cpf = cpf;
     }
 
@@ -60,12 +60,12 @@ public class Client {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName() {
@@ -100,13 +100,13 @@ public class Client {
         this.address = address;
     }
 
-//    public String getRoomNumber() {
-//        return roomNumber;
-//    }
+    public String getRoomNumber() {
+        return roomNumber;
+    }
 
-//    public void setRoomNumber(String roomNumber) {
-//        this.roomNumber = roomNumber;
-//    }
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public String getCpf() {
         return cpf;
