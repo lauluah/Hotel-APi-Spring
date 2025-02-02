@@ -33,7 +33,11 @@ public class ClientDTOrequest {
     @CPF(message = "The CPF format is invalid. Please enter a valid CPF.")
     private String cpf;
 
-    public ClientDTOrequest(String name, String lastName, LocalDate birthDate, String email, String phone, String address, String cpf) {
+    @NotBlank
+    private String roomNumber;
+
+
+    public ClientDTOrequest(String name, String lastName, LocalDate birthDate, String email, String phone, String address, String cpf, String roomNumber) {
         this.name = name;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -41,7 +45,9 @@ public class ClientDTOrequest {
         this.phone = phone;
         this.address = address;
         this.cpf = cpf;
+        this.roomNumber = roomNumber;
     }
+
 
     public String getName() {
         return name;
@@ -97,5 +103,13 @@ public class ClientDTOrequest {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 }

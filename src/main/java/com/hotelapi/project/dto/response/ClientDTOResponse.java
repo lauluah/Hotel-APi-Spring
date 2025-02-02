@@ -14,11 +14,10 @@ public class ClientDTOResponse {
         this.name = name;
         this.birthDate = birthDate;
         this.email = email;
-        this.roomNumber = Util.createRoomNumber();
+        this.roomNumber = roomNumber;
     }
 
     public ClientDTOResponse() {
-        this.roomNumber = Util.createRoomNumber();
     }
 
     public String getName() {

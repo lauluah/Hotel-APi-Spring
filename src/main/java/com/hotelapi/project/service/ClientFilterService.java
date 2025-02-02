@@ -3,13 +3,14 @@ package com.hotelapi.project.service;
 import com.hotelapi.project.exceptions.ClientNotFoundException;
 import com.hotelapi.project.model.Client;
 import com.hotelapi.project.repository.ClientRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ClientFilterService {
 
     private final ClientRepository clientRepository;
-
 
     public ClientFilterService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;

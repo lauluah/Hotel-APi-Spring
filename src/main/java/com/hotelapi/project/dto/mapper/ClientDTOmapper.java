@@ -15,6 +15,7 @@ public class ClientDTOmapper {
         client.setAddress(clientDTOrequest.getAddress());
         client.setCpf(clientDTOrequest.getCpf());
         client.setBirthDate(clientDTOrequest.getBirthDate());
+        client.setRoomNumber(clientDTOrequest.getRoomNumber());
         return client;
     }
 
@@ -23,7 +24,7 @@ public class ClientDTOmapper {
         clientResponse.setBirthDate(client.getBirthDate());
         clientResponse.setName(client.getName());
         clientResponse.setEmail(client.getEmail());
-        System.out.println(clientResponse.getRoomNumber());
+        clientResponse.setRoomNumber(client.getRoomNumber());
         return clientResponse;
     }
 }
