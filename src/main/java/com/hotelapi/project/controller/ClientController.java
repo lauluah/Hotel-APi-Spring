@@ -33,4 +33,9 @@ public class ClientController {
     public List<Client> getClientsByName(@RequestParam String name) {
           return clientFilterService.getClientByName(name);
     }
+
+    @GetMapping("/email")
+    public Client getClientByEmail(@RequestParam String email) {
+        return clientFilterService.getClientBYEmail(email);
+    }
 }
