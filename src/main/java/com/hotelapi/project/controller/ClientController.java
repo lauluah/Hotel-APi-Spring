@@ -6,6 +6,7 @@ import com.hotelapi.project.model.Client;
 import com.hotelapi.project.service.ClientCreatorService;
 import com.hotelapi.project.service.ClientFilterService;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,4 +39,15 @@ public class ClientController {
     public Client getClientByEmail(@RequestParam String email) {
         return clientFilterService.getClientBYEmail(email);
     }
+
+    @GetMapping("/roomNumber")
+    public Client getClientByRoomNumber(@RequestParam String roomNumber) {
+        return clientFilterService.getClientByRoomNumber(roomNumber);
+    }
+
+    @GetMapping("{id}")
+    public Client getClientByRoomNumber(@PathVariable Long id) {
+        return clientFilterService.getClientById(id);
+    }
+
 }

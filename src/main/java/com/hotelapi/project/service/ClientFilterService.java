@@ -20,7 +20,7 @@ public class ClientFilterService {
     public List<Client> getClientByName(String clientName) {
         List<Client> clients = clientRepository.findByName(clientName);
         if (clients.isEmpty()) {
-            throw new ClientNotFoundException(String.format("Não foi possível encontrar clientes com o nome %s", clientName));
+            throw new ClientNotFoundException(String.format("Não foi possível encontrar clientes com o nome: %s", clientName));
         }
         return clients;
     }
@@ -28,7 +28,23 @@ public class ClientFilterService {
     public Client getClientBYEmail(String email) {
         Optional<Client> client = clientRepository.findByEmail(email);
         if (client.isEmpty()) {
-            throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente com o email %s", email));
+            throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente com o email: %s", email));
+        }
+        return client.get();
+    }
+
+    public Client getClientByRoomNumber(String roomNumber) {
+        Optional<Client> client = clientRepository.findByRoomNumber(roomNumber);
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente no quarto: %s", roomNumber));
+        }
+        return client.get();
+    }
+
+    public Client getClientById(Long clientId) {
+        Optional<Client> client = clientRepository.findById(clientId);
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente com o id: %s", clientId));
         }
         return client.get();
     }

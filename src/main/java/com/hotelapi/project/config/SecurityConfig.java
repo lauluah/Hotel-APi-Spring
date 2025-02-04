@@ -24,9 +24,9 @@ public class SecurityConfig {
                     req.requestMatchers(HttpMethod.POST, "/client")
                             .permitAll();
                     req.requestMatchers(HttpMethod.GET, "/client/**")
-                            .permitAll();
+                            .authenticated();
                     req.requestMatchers(HttpMethod.DELETE, "/client/**")
-                            .permitAll();
+                            .authenticated();
 
                     req.requestMatchers(new AntPathRequestMatcher("/h2/**"))
                             .permitAll();
