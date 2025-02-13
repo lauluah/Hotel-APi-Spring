@@ -15,4 +15,6 @@ public class GlobalExceptionHandler {
         Error.setCodigoErro("USR-404");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Error);
     }
+
+//    @Exceptionhandler({})
 }
