@@ -48,4 +48,12 @@ public class ClientFilterService {
         }
         return client.get();
     }
+
+    public Client getClientByCpf(String cpf) {
+        Optional<Client> client = clientRepository.findByCpf(cpf);
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente com o cpf: %s", cpf));
+        }
+        return client.get();
+    }
 }

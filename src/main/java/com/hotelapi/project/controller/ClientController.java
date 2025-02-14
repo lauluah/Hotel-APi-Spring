@@ -50,4 +50,8 @@ public class ClientController {
         return clientFilterService.getClientById(id);
     }
 
+    @GetMapping("/cpf")
+    public Client getClientByCpf(@RequestParam String cpf) {
+        return clientFilterService.getClientByCpf(cpf);
+    }
 }
