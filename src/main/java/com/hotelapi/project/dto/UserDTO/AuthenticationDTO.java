@@ -1,4 +1,4 @@
-package com.hotelapi.project.dto.AdminDTO;
+package com.hotelapi.project.dto.UserDTO;
 
 public record AuthenticationDTO(String login, String password) {
 }

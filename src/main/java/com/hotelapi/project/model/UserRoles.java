@@ -1,12 +1,12 @@
 package com.hotelapi.project.model;
 
-public enum AdminRoles {
+public enum UserRoles {
     ADMIN("admin"),
     USER("user");
 
     private String role;
 
-    AdminRoles(String role) {
+    UserRoles(String role) {
         this.role = role;
     }
 

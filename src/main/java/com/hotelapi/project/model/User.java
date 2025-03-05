@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "ADMIN")
+@Table(name = "USERS")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Admin implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,11 +30,9 @@ public class Admin implements UserDetails {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    //corrigir roles get
-    @Column(name = "ROLE")
-    private AdminRoles role;
+    private UserRoles role;
 
-    public Admin(String login, String password, AdminRoles role) {
+    public User(String login, String password, UserRoles role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -42,7 +40,7 @@ public class Admin implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == AdminRoles.ADMIN)
+        if (this.role == UserRoles.ADMIN)
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }

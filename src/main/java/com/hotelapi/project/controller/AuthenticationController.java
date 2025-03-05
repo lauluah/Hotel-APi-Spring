@@ -1,15 +1,16 @@
 package com.hotelapi.project.controller;
 
-import com.hotelapi.project.dto.AdminDTO.AuthenticationDTO;
-import com.hotelapi.project.dto.AdminDTO.RegisterDTO;
-import com.hotelapi.project.model.Admin;
-import com.hotelapi.project.repository.AdminRepository;
+import com.hotelapi.project.config.TokenService;
+import com.hotelapi.project.dto.UserDTO.AuthenticationDTO;
+import com.hotelapi.project.dto.UserDTO.LoginResponseDTO;
+import com.hotelapi.project.dto.UserDTO.RegisterDTO;
+import com.hotelapi.project.model.User;
+import com.hotelapi.project.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private AdminRepository repository;
+    private UserRepository repository;
 
     @Autowired
     private TokenService tokenService;
@@ -33,8 +34,9 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateToken((User) auth.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("register")
@@ -43,8 +45,8 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().build();
         }
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        Admin newAdmin = new Admin(data.login(), encryptedPassword, data.role());
-        this.repository.save(newAdmin);
+        User newUser = new User(data.login(), encryptedPassword, data.role());
+        this.repository.save(newUser);
 
         return ResponseEntity.ok().build();
     }
