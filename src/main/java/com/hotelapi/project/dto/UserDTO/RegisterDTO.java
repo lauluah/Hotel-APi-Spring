@@ -1,6 +1,6 @@
 package com.hotelapi.project.dto.UserDTO;
 
-import com.hotelapi.project.model.UserRoles;
+import com.hotelapi.project.model.UserRole;
 
-public record RegisterDTO(String login, String password, UserRoles role) {
+public record RegisterDTO(String login, String password, UserRole role) {
 }

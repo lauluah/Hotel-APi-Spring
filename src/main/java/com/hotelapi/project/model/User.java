@@ -12,27 +12,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
-@Table(name = "USERS")
+@Table(name = "users")
+@Entity(name = "users")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User implements UserDetails {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "LOGIN", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String login;
-
-    @Column(name = "PASSWORD", nullable = false)
     private String password;
+    private UserRole role;
 
-    private UserRoles role;
-
-    public User(String login, String password, UserRoles role) {
+    public User(String login, String password, UserRole role){
         this.login = login;
         this.password = password;
         this.role = role;
@@ -40,8 +34,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == UserRoles.ADMIN)
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

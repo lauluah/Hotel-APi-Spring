@@ -1,5 +1,6 @@
 package com.hotelapi.project.service;
 
+import com.hotelapi.project.model.User;
 import com.hotelapi.project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,9 +13,8 @@ public class AuthorizationService implements UserDetailsService {
 
     @Autowired
     UserRepository repository;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return  repository.findByLogin(username);
+        return repository.findByLogin(username);
     }
 }
