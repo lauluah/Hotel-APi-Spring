@@ -1,6 +1,5 @@
 package com.hotelapi.project.service;
 
-import com.hotelapi.project.model.User;
 import com.hotelapi.project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
