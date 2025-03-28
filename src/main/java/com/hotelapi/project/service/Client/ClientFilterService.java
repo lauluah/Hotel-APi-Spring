@@ -1,4 +1,4 @@
-package com.hotelapi.project.service;
+package com.hotelapi.project.service.Client;
 
 import com.hotelapi.project.exceptions.ClientNotFoundException;
 import com.hotelapi.project.model.Client;
@@ -53,6 +53,14 @@ public class ClientFilterService {
         Optional<Client> client = clientRepository.findByCpf(cpf);
         if (client.isEmpty()) {
             throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente com o cpf: %s", cpf));
+        }
+        return client.get();
+    }
+
+    public Client getClientByLastName(String lastName) {
+        Optional<Client> client = clientRepository.findByLastName(lastName);
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException(String.format("Não foi possível encontrar cliente com o sobrenome: %s", lastName));
         }
         return client.get();
     }

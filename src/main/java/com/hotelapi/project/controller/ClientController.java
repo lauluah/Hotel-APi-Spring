@@ -3,11 +3,10 @@ package com.hotelapi.project.controller;
 import com.hotelapi.project.dto.request.ClientDTOrequest;
 import com.hotelapi.project.dto.response.ClientDTOResponse;
 import com.hotelapi.project.model.Client;
-import com.hotelapi.project.service.ClientCreatorService;
-import com.hotelapi.project.service.ClientDeleteService;
-import com.hotelapi.project.service.ClientFilterService;
+import com.hotelapi.project.service.Client.ClientCreatorService;
+import com.hotelapi.project.service.Client.ClientDeleteService;
+import com.hotelapi.project.service.Client.ClientFilterService;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +56,11 @@ public class ClientController {
     @GetMapping("/cpf")
     public Client getClientByCpf(@RequestParam String cpf) {
         return clientFilterService.getClientByCpf(cpf);
+    }
+
+    @GetMapping("/lastName")
+    public Client getClientByLastName(@RequestParam String lastName) {
+        return clientFilterService.getClientByLastName(lastName);
     }
 
     @DeleteMapping("{id}")

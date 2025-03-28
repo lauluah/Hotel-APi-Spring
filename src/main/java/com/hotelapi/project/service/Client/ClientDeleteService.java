@@ -1,4 +1,4 @@
-package com.hotelapi.project.service;
+package com.hotelapi.project.service.Client;
 
 import com.hotelapi.project.exceptions.ClientNotFoundException;
 import com.hotelapi.project.repository.ClientRepository;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientDeleteService {
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     public ClientDeleteService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
