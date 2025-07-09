@@ -1,4 +1,4 @@
-package com.hotelapi.project.service;
+package com.hotelapi.project.service.Client;
 
 import com.hotelapi.project.dto.mapper.ClientDTOmapper;
 import com.hotelapi.project.dto.request.ClientDTOrequest;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientCreatorService {
-    ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     public ClientCreatorService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
