@@ -48,6 +48,10 @@ public class ClientDTOrequest {
         this.roomNumber = roomNumber;
     }
 
+    public ClientDTOrequest() {
+
+    }
+
 
     public String getName() {
         return name;
