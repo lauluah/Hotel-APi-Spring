@@ -1,4 +1,4 @@
-package com.hotelapi.project.useCases;
+package com.hotelapi.project.controller;
 
 import com.hotelapi.project.model.User;
 import com.hotelapi.project.model.UserRole;
@@ -41,11 +41,24 @@ public class ClientControllerIntegrationTest {
     @BeforeEach
     void setUp() {
         clientRepository.deleteAll();
+        userRepository.deleteAll();
 
         User user = new User("laura", "12345", UserRole.ADMIN);
-
         userRepository.save(user);
+
+        Client client = new Client();
+        client.setName("João");
+        client.setLastName("Silva");
+        client.setEmail("joao@email.com");
+        client.setPhone("98888-9999");
+        client.setAddress("Rua A");
+        client.setCpf("862.629.040-34");
+        client.setRoomNumber("101");
+        client.setBirthDate(LocalDate.of(1990, 1, 1));
+
+        clientRepository.save(client);
     }
+
 
     @Test
     void testCreateClient_success() throws Exception {
@@ -73,6 +86,7 @@ public class ClientControllerIntegrationTest {
     @Test
     void testGetClientByEmail() throws Exception {
         mockMvc.perform(get("/client/email")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImxhdXJhIiwiZXhwIjoxNzUyMDg0MzQxfQ.8O5DsbcN1gZ_A4T03bth9676WH-bflvVa18phavMKG0")
                         .param("email", "joao@email.com"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("João")))
@@ -80,4 +94,32 @@ public class ClientControllerIntegrationTest {
 
     }
 
+    @Test
+    void testGetClientByRoomNumber() throws Exception {
+        mockMvc.perform(get("/client/roomNumber")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImxhdXJhIiwiZXhwIjoxNzUyMDg0MzQxfQ.8O5DsbcN1gZ_A4T03bth9676WH-bflvVa18phavMKG0")
+                .param("roomNumber", "101"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("João")))
+                .andExpect(jsonPath("$.roomNumber", is("101")));
+    }
+
+    @Test
+    void testGetClientById() throws Exception {
+        mockMvc.perform(get("/client/{id}", 1L)
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImxhdXJhIiwiZXhwIjoxNzUyMDg0MzQxfQ.8O5DsbcN1gZ_A4T03bth9676WH-bflvVa18phavMKG0"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("João")))
+                .andExpect(jsonPath("$.roomNumber", is("101")));
+    }
+
+    @Test
+    void testGetClientByCpf() throws Exception {
+        mockMvc.perform(get("/client/cpf")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6ImxhdXJhIiwiZXhwIjoxNzUyMDg0MzQxfQ.8O5DsbcN1gZ_A4T03bth9676WH-bflvVa18phavMKG0"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("João")))
+                .andExpect(jsonPath("$.cpf", is("862.629.040-34")))
+                .andExpect(jsonPath("$.roomNumber", is("101")));
+    }
 }
